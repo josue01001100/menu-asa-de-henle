@@ -92,10 +92,11 @@
 
         /* Contenedor principal de las secciones deslizantes */
         .menu-wrapper {
-            display: flex;
-            width: 100%; /* El contenedor ocupa el 100% del ancho del main */
-            /* Quitar overflow-x: hidden para que las secciones se vean correctamente al moverse */
-            /* scroll-snap-type: x mandatory; ya no es necesario si controlamos el deslizamiento con JS */
+    display: flex;
+    width: 100%;
+    min-width: 100%;
+    overflow: hidden; /* Oculta contenido que se desborde */
+}
             -webkit-overflow-scrolling: touch;
             transition: transform 0.3s ease-out; /* Suaviza la transición al ajustar la sección */
         }
