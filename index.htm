@@ -1,483 +1,478 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú - Asa de Henle Ultrafiltrado de Café</title>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        /* Estilos Generales */
-        body {
-            font-family: 'Open Sans', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #F8F4E3; /* Crema suave */
-            color: #3C2F2F; /* Marrón oscuro */
-            line-height: 1.6;
-            overflow-x: hidden; /* Evita el scroll horizontal del cuerpo */
-        }
-
-        .container {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #FFFFFF;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* NUEVO ESTILO: Contiene las secciones deslizantes dentro del main */
-        main {
-            overflow: hidden; 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú - Asa de Henle Ultrafiltrado de Café</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos Generales */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F8F4E3; /* Crema suave */
+            color: #3C2F2F; /* Marrón oscuro */
+            line-height: 1.6;
+            overflow-x: hidden; /* Evita el scroll horizontal del cuerpo */
         }
 
-        /* Encabezado */
-        header {
-            background-color: #6F4E37; /* Marrón café */
-            color: white;
-            padding: 15px 20px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 3px solid #3C2F2F;
-        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #FFFFFF;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-        header h1 {
-            margin: 0;
-            font-family: 'Merriweather', serif;
-            font-size: 1.8em;
-            flex-grow: 1;
-        }
+        /* Encabezado */
+        header {
+            background-color: #6F4E37; /* Marrón café */
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #3C2F2F;
+        }
 
-        .menu-icon-img {
-            height: 150px; /* Cambiado de 3000px a 50px */
-            width: auto;
-            cursor: pointer;
-        }
+        header h1 {
+            margin: 0;
+            font-family: 'Merriweather', serif;
+            font-size: 1.8em;
+            flex-grow: 1;
+        }
 
-        /* Navegación del Menú */
-        .menu-navigation {
-            background-color: #E8E0C8;
-            padding: 10px;
-            text-align: center;
-            border-bottom: 1px solid #D4CCB8;
-            white-space: nowrap; /* Asegura que los botones no se envuelvan */
-            overflow-x: auto; /* Permite desplazamiento horizontal en la navegación si hay muchos ítems */
-            -webkit-overflow-scrolling: touch; /* Suaviza el scroll en iOS */
-        }
+        .menu-icon-img {
+            height: 3000px;
+            width: auto;
+            cursor: pointer;
+        }
 
-        .menu-navigation::-webkit-scrollbar {
-            display: none; /* Oculta la barra de desplazamiento en algunos navegadores */
-        }
+        /* Navegación del Menú */
+        .menu-navigation {
+            background-color: #E8E0C8;
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #D4CCB8;
+            white-space: nowrap; /* Asegura que los botones no se envuelvan */
+            overflow-x: auto; /* Permite desplazamiento horizontal en la navegación si hay muchos ítems */
+            -webkit-overflow-scrolling: touch; /* Suaviza el scroll en iOS */
+        }
 
-        .menu-navigation a {
-            display: inline-block;
-            padding: 8px 15px;
-            text-decoration: none;
-            color: #3C2F2F;
-            font-weight: 600;
-            border-radius: 5px;
-            margin: 0 5px;
-            transition: background-color 0.3s ease;
-        }
+        .menu-navigation::-webkit-scrollbar {
+            display: none; /* Oculta la barra de desplazamiento en algunos navegadores */
+        }
 
-        .menu-navigation a.active {
-            background-color: #D4CCB8; /* Estilo para la sección activa */
-        }
+        .menu-navigation a {
+            display: inline-block;
+            padding: 8px 15px;
+            text-decoration: none;
+            color: #3C2F2F;
+            font-weight: 600;
+            border-radius: 5px;
+            margin: 0 5px;
+            transition: background-color 0.3s ease;
+        }
 
-        .menu-navigation a:hover {
-            background-color: #D4CCB8;
-        }
+        .menu-navigation a.active {
+            background-color: #D4CCB8; /* Estilo para la sección activa */
+        }
 
-        /* Contenedor principal de las secciones deslizantes */
-        .menu-wrapper {
-            display: flex;
-            width: 100%; /* El contenedor ocupa el 100% del ancho del main */
-            overflow: hidden; /* Añadido para controlar el desbordamiento horizontal */
-            /* scroll-snap-type: x mandatory; ya no es necesario si controlamos el deslizamiento con JS */
-            -webkit-overflow-scrolling: touch;
-            transition: transform 0.3s ease-out; /* Suaviza la transición al ajustar la sección */
-        }
+        .menu-navigation a:hover {
+            background-color: #D4CCB8;
+        }
 
-        /* Cada sección del menú */
-        .menu-section {
-            padding: 20px;
-            width: 100%; /* Cada sección ocupa el 100% del ancho del .menu-wrapper */
-            flex-shrink: 0; /* Evita que las secciones se encojan */
-            /* scroll-snap-align: start; ya no es necesario si controlamos el deslizamiento con JS */
-            box-sizing: border-box; /* Incluye padding y borde en el ancho */
-        }
+        /* Contenedor principal de las secciones deslizantes */
+        .menu-wrapper {
+            display: flex;
+            width: 100%; /* El contenedor ocupa el 100% del ancho del main */
+            /* Quitar overflow-x: hidden para que las secciones se vean correctamente al moverse */
+            /* scroll-snap-type: x mandatory; ya no es necesario si controlamos el deslizamiento con JS */
+            -webkit-overflow-scrolling: touch;
+            transition: transform 0.3s ease-out; /* Suaviza la transición al ajustar la sección */
+        }
 
-        .menu-section h2 {
-            font-family: 'Merriweather', serif;
-            color: #6F4E37;
-            font-size: 1.6em;
-            margin-bottom: 15px;
-            text-align: center;
-            position: relative;
-        }
+        /* Cada sección del menú */
+        .menu-section {
+            padding: 20px;
+            width: 100%; /* Cada sección ocupa el 100% del ancho del .menu-wrapper */
+            flex-shrink: 0; /* Evita que las secciones se encojan */
+            /* scroll-snap-align: start; ya no es necesario si controlamos el deslizamiento con JS */
+            box-sizing: border-box; /* Incluye padding y borde en el ancho */
+        }
 
-        .menu-section h2::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 2px;
-            background-color: #D4CCB8;
-            margin: 8px auto 0;
-        }
+        .menu-section h2 {
+            font-family: 'Merriweather', serif;
+            color: #6F4E37;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            text-align: center;
+            position: relative;
+        }
 
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 15px;
-        }
+        .menu-section h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background-color: #D4CCB8;
+            margin: 8px auto 0;
+        }
 
-        .item-info {
-            flex-grow: 1;
-            margin-right: 15px;
-        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 15px;
+        }
 
-        .item-name {
-            font-weight: 700;
-            color: #3C2F2F;
-            font-size: 1.1em;
-            margin-bottom: 5px;
-        }
+        .item-info {
+            flex-grow: 1;
+            margin-right: 15px;
+        }
 
-        .item-description {
-            font-size: 0.9em;
-            color: #5A4B4B;
-        }
+        .item-name {
+            font-weight: 700;
+            color: #3C2F2F;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
 
-        .item-price {
-            font-weight: 700;
-            color: #6F4E37;
-            font-size: 1.1em;
-            white-space: nowrap;
-        }
+        .item-description {
+            font-size: 0.9em;
+            color: #5A4B4B;
+        }
 
-        /* Pie de página */
-        footer {
-            background-color: #3C2F2F;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.85em;
-            margin-top: auto;
-        }
+        .item-price {
+            font-weight: 700;
+            color: #6F4E37;
+            font-size: 1.1em;
+            white-space: nowrap;
+        }
 
-        footer p {
-            margin: 5px 0;
-        }
+        /* Pie de página */
+        footer {
+            background-color: #3C2F2F;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.85em;
+            margin-top: auto;
+        }
 
-        /* Media Queries */
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 1.5em;
-            }
-            .menu-navigation a {
-                padding: 6px 10px;
-                font-size: 0.9em;
-                margin: 0 2px;
-            }
-            .menu-section {
-                padding: 15px;
-            }
-            .item-name {
-                font-size: 1em;
-            }
-            .item-description {
-                font-size: 0.85em;
-            }
-            .item-price {
-                font-size: 1em;
-            }
-            .menu-icon-img {
-                height: 25px;
-            }
-        }
-    </style>
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* Media Queries */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.5em;
+            }
+            .menu-navigation a {
+                padding: 6px 10px;
+                font-size: 0.9em;
+                margin: 0 2px;
+            }
+            .menu-section {
+                padding: 15px;
+            }
+            .item-name {
+                font-size: 1em;
+            }
+            .item-description {
+                font-size: 0.85em;
+            }
+            .item-price {
+                font-size: 1em;
+            }
+            .menu-icon-img {
+                height: 25px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Asa de Henle <br> Ultrafiltrado de Café</h1>
-            <img src="https://raw.githubusercontent.com/josue01001100/menu-asa-de-henle/main/asafoto.png" alt="Icono de Menú o Logo" class="menu-icon-img">
-        </header>
+    <div class="container">
+        <header>
+            <h1>Asa de Henle <br> Ultrafiltrado de Café</h1>
+            <img src="https://raw.githubusercontent.com/josue01001100/menu-asa-de-henle/main/asafoto.png" alt="Icono de Menú o Logo" class="menu-icon-img">
+        </header>
 
-        <main>
-            <nav class="menu-navigation">
-                <a href="#cafes" class="nav-link active" data-index="0">Cafés</a>
-                <a href="#infusiones" class="nav-link" data-index="1">Infusiones</a>
-                <a href="#queques" class="nav-link" data-index="2">Queques</a>
-                <a href="#extras" class="nav-link" data-index="3">Extras</a>
-            </nav>
+        <main>
+            <nav class="menu-navigation">
+                <a href="#cafes" class="nav-link active" data-index="0">Cafés</a>
+                <a href="#infusiones" class="nav-link" data-index="1">Infusiones</a>
+                <a href="#queques" class="nav-link" data-index="2">Queques</a>
+                <a href="#extras" class="nav-link" data-index="3">Extras</a>
+            </nav>
 
-            <div class="menu-wrapper">
-                <section class="menu-section" id="cafes">
-                    <h2>Bebidas de Café</h2>
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <div class="item-name">Café Filtrado</div>
-                            <div class="item-description">Nuestro café especial preparado con agua.</div>
-                        </div>
-                        <div class="item-price">S/ 8.00</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <div class="item-name">Latte Clásico</div>
-                            <div class="item-description">Café con leche vaporizada y una suave capa de espuma.</div>
-                        </div>
-                        <div class="item-price">S/ 12.00</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <div class="item-name">Latte con Sabor</div>
-                            <div class="item-description">Elige entre vainilla o canela para tu latte.</div>
-                        </div>
-                        <div class="item-price">S/ 14.00</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <div class="item-name">Chocolate Caliente</div>
-                            <div class="item-description">Delicioso chocolate con leche, cremoso y reconfortante.</div>
-                        </div>
-                        <div class="item-price">S/ 10.00</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <div class="item-name">Café con Leche</div>
-                            <div class="item-description">Preparación tradicional de café con leche sin espuma.</div>
-                        </div>
-                        <div class="item-price">S/ 9.00</div>
-                    </div>
-                </section>
+            <div class="menu-wrapper">
+                <section class="menu-section" id="cafes">
+                    <h2>Bebidas de Café</h2>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Café Filtrado</div>
+                            <div class="item-description">Nuestro café especial preparado con agua.</div>
+                        </div>
+                        <div class="item-price">S/ 8.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Latte Clásico</div>
+                            <div class="item-description">Café con leche vaporizada y una suave capa de espuma.</div>
+                        </div>
+                        <div class="item-price">S/ 12.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Latte con Sabor</div>
+                            <div class="item-description">Elige entre vainilla o canela para tu latte.</div>
+                        </div>
+                        <div class="item-price">S/ 14.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Chocolate Caliente</div>
+                            <div class="item-description">Delicioso chocolate con leche, cremoso y reconfortante.</div>
+                        </div>
+                        <div class="item-price">S/ 10.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Café con Leche</div>
+                            <div class="item-description">Preparación tradicional de café con leche sin espuma.</div>
+                        </div>
+                        <div class="item-price">S/ 9.00</div>
+                    </div>
+                </section>
 
-                <section class="menu-section" id="infusiones">
-                    <h2>Infusiones</h2>
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <div class="item-name">Té, Canela y Clavo</div>
-                            <div class="item-description">Infusión aromática y especiada, ideal para el frío.</div>
-                        </div>
-                        <div class="item-price">S/ 10.00</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <div class="item-name">Manzanilla</div>
-                            <div class="item-description">Clásica infusión relajante y digestiva.</div>
-                        </div>
-                        <div class="item-price">S/ 8.00</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <div class="item-name">Anís</div>
-                            <div class="item-description">Infusión dulce y reconfortante con propiedades digestivas.</div>
-                        </div>
-                        <div class="item-price">S/ 8.00</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <div class="item-name">Muña y Menta</div>
-                            <div class="item-description">Combinación refrescante y tradicional andina.</div>
-                        </div>
-                        <div class="item-price">S/ 9.00</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <div class="item-name">Quita Calzón</div>
-                            <div class="item-description">Infusión especial de hierbas andinas, ¡pregunta por sus beneficios!</div>
-                        </div>
-                        <div class="item-price">S/ 12.00</div>
-                    </div>
-                </section>
+                <section class="menu-section" id="infusiones">
+                    <h2>Infusiones</h2>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Té, Canela y Clavo</div>
+                            <div class="item-description">Infusión aromática y especiada, ideal para el frío.</div>
+                        </div>
+                        <div class="item-price">S/ 10.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Manzanilla</div>
+                            <div class="item-description">Clásica infusión relajante y digestiva.</div>
+                        </div>
+                        <div class="item-price">S/ 8.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Anís</div>
+                            <div class="item-description">Infusión dulce y reconfortante con propiedades digestivas.</div>
+                        </div>
+                        <div class="item-price">S/ 8.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Muña y Menta</div>
+                            <div class="item-description">Combinación refrescante y tradicional andina.</div>
+                        </div>
+                        <div class="item-price">S/ 9.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Quita Calzón</div>
+                            <div class="item-description">Infusión especial de hierbas andinas, ¡pregunta por sus beneficios!</div>
+                        </div>
+                        <div class="item-price">S/ 12.00</div>
+                    </div>
+                </section>
 
-                <section class="menu-section" id="queques">
-                    <h2>Queques</h2>
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <div class="item-name">Queque de Vainilla</div>
-                            <div class="item-description">Suave y esponjoso, con el clásico sabor a vainilla.</div>
-                        </div>
-                        <div class="item-price">S/ 10.00</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <div class="item-name">Queque de Chocolate</div>
-                            <div class="item-description">Intenso sabor a chocolate, perfecto para los amantes del cacao.</div>
-                        </div>
-                        <div class="item-price">S/ 12.00</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <div class="item-name">Queque Marmoleado</div>
-                            <div class="item-description">La combinación perfecta de vainilla y chocolate en cada bocado.</div>
-                        </div>
-                        <div class="item-price">S/ 11.00</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <div class="item-name">Queque Sorpresa</div>
-                            <div class="item-description">Pregunta por el sabor del día, ¡siempre una delicia inesperada!</div>
-                        </div>
-                        <div class="item-price">S/ 13.00</div>
-                    </div>
-                </section>
+                <section class="menu-section" id="queques">
+                    <h2>Queques</h2>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Queque de Vainilla</div>
+                            <div class="item-description">Suave y esponjoso, con el clásico sabor a vainilla.</div>
+                        </div>
+                        <div class="item-price">S/ 10.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Queque de Chocolate</div>
+                            <div class="item-description">Intenso sabor a chocolate, perfecto para los amantes del cacao.</div>
+                        </div>
+                        <div class="item-price">S/ 12.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Queque Marmoleado</div>
+                            <div class="item-description">La combinación perfecta de vainilla y chocolate en cada bocado.</div>
+                        </div>
+                        <div class="item-price">S/ 11.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Queque Sorpresa</div>
+                            <div class="item-description">Pregunta por el sabor del día, ¡siempre una delicia inesperada!</div>
+                        </div>
+                        <div class="item-price">S/ 13.00</div>
+                    </div>
+                </section>
 
-                <section class="menu-section" id="extras">
-                    <h2>Extras (Precio Bodega)</h2>
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <div class="item-name">Galletas</div>
-                            <div class="item-description">Variedad de galletas empaquetadas.</div>
-                        </div>
-                        <div class="item-price">S/ 3.00</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <div class="item-name">Frugos</div>
-                            <div class="item-description">Jugo en caja, sabores disponibles.</div>
-                        </div>
-                        <div class="item-price">S/ 4.50</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <div class="item-name">Gaseosas</div>
-                            <div class="item-description">Botella personal, consulta por las marcas.</div>
-                        </div>
-                        <div class="item-price">S/ 4.00</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <div class="item-name">Agua Embotellada</div>
-                            <div class="item-description">Botella de agua sin gas.</div>
-                        </div>
-                        <div class="item-price">S/ 2.50</div>
-                    </div>
-                </section>
-            </div>
-        </main>
+                <section class="menu-section" id="extras">
+                    <h2>Extras (Precio Bodega)</h2>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Galletas</div>
+                            <div class="item-description">Variedad de galletas empaquetadas.</div>
+                        </div>
+                        <div class="item-price">S/ 3.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Frugos</div>
+                            <div class="item-description">Jugo en caja, sabores disponibles.</div>
+                        </div>
+                        <div class="item-price">S/ 4.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Gaseosas</div>
+                            <div class="item-description">Botella personal, consulta por las marcas.</div>
+                        </div>
+                        <div class="item-price">S/ 4.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Agua Embotellada</div>
+                            <div class="item-description">Botella de agua sin gas.</div>
+                        </div>
+                        <div class="item-price">S/ 2.50</div>
+                    </div>
+                </section>
+            </div>
+        </main>
 
-        <footer>
-            <p>&copy; 2025 Asa de Henle Ultrafiltrado de Café. Todos los derechos reservados.</p>
-            <p>¡Gracias por visitarnos!</p>
-        </footer>
-    </div>
+        <footer>
+            <p>&copy; 2025 Asa de Henle Ultrafiltrado de Café. Todos los derechos reservados.</p>
+            <p>¡Gracias por visitarnos!</p>
+        </footer>
+    </div>
 
-    <script>
-        const menuWrapper = document.querySelector('.menu-wrapper');
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('.menu-section'); // Obtenemos todas las secciones
-        let isDragging = false;
-        let startX;
-        let currentTranslate = 0; // Almacena la posición de transformación actual del wrapper
-        let prevTranslate = 0; // Almacena la posición de transformación previa al inicio del arrastre
-        let currentSectionIndex = 0;
+    <script>
+        const menuWrapper = document.querySelector('.menu-wrapper');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.menu-section'); // Obtenemos todas las secciones
+        let isDragging = false;
+        let startX;
+        let currentTranslate = 0; // Almacena la posición de transformación actual del wrapper
+        let prevTranslate = 0; // Almacena la posición de transformación previa al inicio del arrastre
+        let currentSectionIndex = 0;
 
-        // Función para actualizar la clase 'active' en la navegación
-        function updateNavLinkActive() {
-            navLinks.forEach((link, index) => {
-                if (index === currentSectionIndex) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            });
-            // Asegura que el enlace activo sea visible en la navegación
-            const activeLink = navLinks[currentSectionIndex];
-            if (activeLink) {
-                activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-            }
-        }
+        // Función para actualizar la clase 'active' en la navegación
+        function updateNavLinkActive() {
+            navLinks.forEach((link, index) => {
+                if (index === currentSectionIndex) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            // Asegura que el enlace activo sea visible en la navegación
+            const activeLink = navLinks[currentSectionIndex];
+            if (activeLink) {
+                activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        }
 
-        // Función para aplicar la transformación
-        function setSliderPosition() {
-            menuWrapper.style.transform = `translateX(${currentTranslate}px)`;
-        }
+        // Función para aplicar la transformación
+        function setSliderPosition() {
+            menuWrapper.style.transform = `translateX(${currentTranslate}px)`;
+        }
 
-        // Función para deslizar a una sección específica
-        function scrollToSection(index) {
-            const sectionWidth = menuWrapper.clientWidth; // Ancho de una sección
-            currentTranslate = -index * sectionWidth; // La nueva posición es el negativo del índice * ancho
-            setSliderPosition(); // Aplica la transformación
-            currentSectionIndex = index;
-            updateNavLinkActive();
-        }
+        // Función para deslizar a una sección específica
+        function scrollToSection(index) {
+            const sectionWidth = menuWrapper.clientWidth; // Ancho de una sección
+            currentTranslate = -index * sectionWidth; // La nueva posición es el negativo del índice * ancho
+            setSliderPosition(); // Aplica la transformación
+            currentSectionIndex = index;
+            updateNavLinkActive();
+        }
 
-        // Event listeners para la navegación
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault(); // Evita el salto automático del ancla
-                const targetIndex = parseInt(e.target.dataset.index);
-                scrollToSection(targetIndex);
-            });
-        });
+        // Event listeners para la navegación
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); // Evita el salto automático del ancla
+                const targetIndex = parseInt(e.target.dataset.index);
+                scrollToSection(targetIndex);
+            });
+        });
 
-        // Eventos táctiles para el arrastre
-        menuWrapper.addEventListener('touchstart', (e) => {
-            isDragging = true;
-            startX = e.touches[0].pageX; // Posición X inicial del toque
-            prevTranslate = currentTranslate; // Guarda la posición actual al inicio del arrastre
-            menuWrapper.style.transition = 'none'; // Desactiva la transición durante el arrastre
-        });
+        // Eventos táctiles para el arrastre
+        menuWrapper.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].pageX; // Posición X inicial del toque
+            prevTranslate = currentTranslate; // Guarda la posición actual al inicio del arrastre
+            menuWrapper.style.transition = 'none'; // Desactiva la transición durante el arrastre
+        });
 
-        menuWrapper.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault(); // Previene el scroll vertical de la página
+        menuWrapper.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault(); // Previene el scroll vertical de la página
 
-            const currentX = e.touches[0].pageX; // Posición X actual del toque
-            const deltaX = currentX - startX; // Diferencia desde el inicio del arrastre
-            
-            // Calcula la nueva posición de transformación
-            currentTranslate = prevTranslate + deltaX;
+            const currentX = e.touches[0].pageX; // Posición X actual del toque
+            const deltaX = currentX - startX; // Diferencia desde el inicio del arrastre
+            
+            // Calcula la nueva posición de transformación
+            currentTranslate = prevTranslate + deltaX;
 
-            // Opcional: Limitar el arrastre para que no se salga mucho de los límites
-            const maxTranslate = 0; // La primera sección está en 0
-            const minTranslate = -(sections.length - 1) * menuWrapper.clientWidth; // Última sección
-            
-            currentTranslate = Math.max(minTranslate - 50, Math.min(maxTranslate + 50, currentTranslate)); // Pequeño margen para "estirar"
-            
-            setSliderPosition(); // Aplica la transformación en tiempo real
-        });
+            // Opcional: Limitar el arrastre para que no se salga mucho de los límites
+            const maxTranslate = 0; // La primera sección está en 0
+            const minTranslate = -(sections.length - 1) * menuWrapper.clientWidth; // Última sección
+            
+            currentTranslate = Math.max(minTranslate - 50, Math.min(maxTranslate + 50, currentTranslate)); // Pequeño margen para "estirar"
+            
+            setSliderPosition(); // Aplica la transformación en tiempo real
+        });
 
-        menuWrapper.addEventListener('touchend', () => {
-            isDragging = false;
-            menuWrapper.style.transition = 'transform 0.3s ease-out'; // Reactiva la transición
+        menuWrapper.addEventListener('touchend', () => {
+            isDragging = false;
+            menuWrapper.style.transition = 'transform 0.3s ease-out'; // Reactiva la transición
 
-            const sectionWidth = menuWrapper.clientWidth;
-            
-            // Calcula el índice de la sección más cercana
-            let movedBy = currentTranslate - prevTranslate; // Cuánto se movió el usuario
-            
-            // Determina la dirección del movimiento
-            if (movedBy < -50 && currentSectionIndex < sections.length - 1) { // Moviendo a la derecha (siguiente sección)
-                currentSectionIndex++;
-            } else if (movedBy > 50 && currentSectionIndex > 0) { // Moviendo a la izquierda (sección anterior)
-                currentSectionIndex--;
-            }
+            const sectionWidth = menuWrapper.clientWidth;
+            
+            // Calcula el índice de la sección más cercana
+            let movedBy = currentTranslate - prevTranslate; // Cuánto se movió el usuario
+            
+            // Determina la dirección del movimiento
+            if (movedBy < -50 && currentSectionIndex < sections.length - 1) { // Moviendo a la derecha (siguiente sección)
+                currentSectionIndex++;
+            } else if (movedBy > 50 && currentSectionIndex > 0) { // Moviendo a la izquierda (sección anterior)
+                currentSectionIndex--;
+            }
 
-            // Ajusta a la sección final basada en el índice calculado
-            scrollToSection(currentSectionIndex);
-        });
+            // Ajusta a la sección final basada en el índice calculado
+            scrollToSection(currentSectionIndex);
+        });
 
-        // Ajustar al redimensionar la ventana (ej. rotar celular)
-        window.addEventListener('resize', () => {
-            scrollToSection(currentSectionIndex); // Reajusta la posición al ancho actual
-        });
+        // Ajustar al redimensionar la ventana (ej. rotar celular)
+        window.addEventListener('resize', () => {
+            scrollToSection(currentSectionIndex); // Reajusta la posición al ancho actual
+        });
 
-        // Inicializar la sección activa al cargar
-        // Un pequeño retraso para asegurar que los anchos de las secciones se calculen correctamente
-        window.addEventListener('load', () => {
-            scrollToSection(0); // Asegura que la primera sección esté visible al cargar
-        });
-        
-    </script>
+        // Inicializar la sección activa al cargar
+        // Un pequeño retraso para asegurar que los anchos de las secciones se calculen correctamente
+        window.addEventListener('load', () => {
+            scrollToSection(0); // Asegura que la primera sección esté visible al cargar
+        });
+        
+    </script>
 </body>
 </html>
